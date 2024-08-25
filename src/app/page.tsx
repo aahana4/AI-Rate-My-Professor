@@ -37,7 +37,7 @@ export default function Home() {
     const decoder = new TextDecoder();
     let result = '';
 
-    const processText = async ({ done, value }) => {
+    const processText = async ({ done, value }: { done: boolean; value?: Uint8Array }): Promise<string> => {      
       if (done) {
         return result;
       }
