@@ -27,7 +27,12 @@ export default function Home() {
       },
       body: JSON.stringify([...messages, { role: 'user', content: message }]),
     });
-
+  
+    if (!response.body) {
+      console.error('Response body is null');
+      return;
+    }
+  
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     let result = '';
@@ -50,6 +55,7 @@ export default function Home() {
 
     await reader.read().then(processText);
   };
+  
 
   return (
     <Box
